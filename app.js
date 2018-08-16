@@ -28,8 +28,10 @@ function scrape() {
 
       console.log('this should not run until result is done');
       if (recipesProcessed === recipes.length) {
-        return;
-        // TODO: Here we should export to JSON file with all properties
+        return fs.writeFile ('scraped-recipes.json', JSON.stringify(recipes), err => {
+          if (err) throw err;
+          console.log('complete!');
+        });
       }
     });
 
